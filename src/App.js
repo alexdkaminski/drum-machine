@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
 import tw from 'tailwind.macro';
+import kick from './samples/kick-808.wav'
 
 const Header = styled.header`
 ${tw`bg-black min-h-screen flex flex-col items-center justify-center text-xl text-white`};
@@ -17,7 +18,7 @@ class DrumMachine extends Component {
       <div id='drum-machine'>
         <div id='display'>
         </div>
-        <DrumPad/>
+        <DrumPad source={kick}/>
     </div>
     )
   }
@@ -30,8 +31,8 @@ class DrumPad extends Component {
   render() {
     return (
       <div className='drum-pad'>
-          <audio>
-            <source src={props.source} type='audio/wav'/>
+          <audio controls>
+            <source src={this.props.source} type='audio/wav'/>
           </audio>
       </div>
     )
