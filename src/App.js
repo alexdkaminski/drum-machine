@@ -42,6 +42,7 @@ class DrumPad extends Component {
 
   handleClick = () => {
     this.audio.current.play();
+    this.props.handler(this.props.name);
   };
 
   handleKeyDown = (e) => {
@@ -64,8 +65,23 @@ class DrumPad extends Component {
 }
 
 class DrumMachine extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: String.fromCharCode(160)
+    }
+    this.handler = this.handler.bind(this)
+  }
+
+  handler(someValue) {
+    this.setState({
+      display: someValue
+    })
+    console.log(someValue)
+  }
+
   renderDrumPad(sound, name, keyLetter, i) {
-    return <DrumPad key={i} file={sound} name={name} keyLetter={keyLetter}/>;
+    return <DrumPad key={i} file={sound} name={name} keyLetter={keyLetter} handler={this.handler} />;
   }
 
   createDrumPad = () => {
@@ -100,10 +116,20 @@ class DrumMachine extends Component {
   render() {
     return (
       <div id="drum-machine">
-        <div id="display" />
+        <Display text={this.state.display}/>
         {this.createDrumPad()}
       </div>
     );
+  }
+}
+
+class Display extends Component {
+  render() {
+    return (
+      <div id="display">
+        <h4>{this.props.text}</h4>
+      </div>
+    )
   }
 }
 
