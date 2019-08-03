@@ -55,10 +55,13 @@ class DrumPad extends Component {
   render() {
     return (
       <DrumPadColumn>
+        <div className="drum-pad" id={this.props.name}>
           <audio ref={this.audio}>
             <source src={this.props.file} type="audio/wav" />
           </audio>
-          <Button onClick={this.handleClick} ref={this.playButton} tabIndex="0">{this.props.name} </Button>
+          <Button onClick={this.handleClick} ref={this.playButton} tabIndex="0">{this.props.keyLetter}</Button>
+        </div>
+         
       </DrumPadColumn>
     );
   }
@@ -81,7 +84,7 @@ class DrumMachine extends Component {
   }
 
   renderDrumPad(sound, name, keyLetter, i) {
-    return <DrumPad key={i} file={sound} name={name} keyLetter={keyLetter} handler={this.handler} />;
+    return <DrumPad id={name} key={i} file={sound} name={name} keyLetter={keyLetter} handler={this.handler} />;
   }
 
   createDrumPad = () => {
