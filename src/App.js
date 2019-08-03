@@ -13,7 +13,7 @@ import tom from "./samples/tom-808.wav";
 import { create } from "istanbul-reports";
 
 const DrumPadGrid = styled.div`
-  ${tw`px-56 p-y-12 mx-auto max-w-4xl`}
+  ${tw`py-6 w-auto h-auto`}
 `;
 const DrumPadRow = styled.div`
   ${tw`flex mb-10 h-auto`}
@@ -41,6 +41,7 @@ class DrumPad extends Component {
   }
 
   handleClick = () => {
+    this.audio.current.currentTime = 0;
     this.audio.current.play();
     this.props.handler(this.props.name);
   };
@@ -48,7 +49,9 @@ class DrumPad extends Component {
   handleKeyDown = (e) => {
     if(e.key === this.props.keyLetter) {
       // Play sound and depress button
+      this.audio.current.currentTime = 0;
       this.audio.current.play();
+      this.props.handler(this.props.name);
     }
   }
 
@@ -126,8 +129,8 @@ class DrumMachine extends Component {
 class Display extends Component {
   render() {
     return (
-      <div id="display">
-        <h4>{this.props.text}</h4>
+      <div id="display" css={tw `bg-gray-600 mb-10 my-auto mx-auto`}>
+        <h4 css={tw `text-4xl text-white`}>{this.props.text}</h4>
       </div>
     )
   }
@@ -136,7 +139,7 @@ class Display extends Component {
 class App extends Component {
   render() {
     return (
-      <div css={tw`text-center bg-gray-800 pb-8 text-xl`}>
+      <div css={tw`text-center bg-gray-800 pb-8 text-xl w-full mx-auto`}>
         <h1 css={tw`text-blue-300 m-0 py-4`}>Drum Machine</h1>
         <DrumPadGrid>
           <DrumMachine />
