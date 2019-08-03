@@ -59,10 +59,9 @@ class DrumPad extends Component {
     return (
       <DrumPadColumn>
         <div className="drum-pad" id={this.props.name}>
-          <audio ref={this.audio}>
-            <source src={this.props.file} type="audio/wav" />
+          <audio ref={this.audio} className="clip" id={this.props.keyLetter.toUpperCase()} src={this.props.file} type="audio/wav" >
           </audio>
-          <Button onClick={this.handleClick} ref={this.playButton} tabIndex="0">{this.props.keyLetter}</Button>
+          <Button onClick={this.handleClick} ref={this.playButton} tabIndex="0">{this.props.keyLetter.toUpperCase()}</Button>
         </div>
          
       </DrumPadColumn>
