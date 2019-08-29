@@ -13,16 +13,16 @@ import tom from "./samples/tom-808.wav";
 import { create } from "istanbul-reports";
 
 const DrumPadGrid = styled.div`
-  ${tw`py-2 w-auto h-auto`}
+  ${tw`py-2 w-auto h-full`}
 `;
 const DrumPadRow = styled.div`
-  ${tw`flex mb-5 h-auto`}
+  ${tw`flex mb-5 h-full`}
 `;
 const DrumPadColumn = styled.div`
-  ${tw`w-1/3 bg-gray-400 h-auto mx-1`}
+  ${tw`w-1/3 bg-gray-400 h-full mx-2`}
 `;
 const Button = styled.button`
-  ${tw`bg-blue-400 hover:bg-blue-700 text-white font-bold py-6 px-4 font-sans border-none h-auto w-full text-3xl`}
+  ${tw`bg-blue-400 hover:bg-blue-700 text-white font-bold py-6 px-4 font-sans border-none h-full w-full text-3xl`}
 `;
 
 class DrumPad extends Component {
@@ -141,12 +141,14 @@ class Display extends Component {
 class App extends Component {
   render() {
     return (
-      <div css={tw`text-center bg-gray-800 pb-8 text-xl w-full h-screen mx-auto`}>
+    <div css={tw`bg-gray-800`}>
+      <div css={tw`text-center bg-gray-800 pb-8 text-xl max-w-md h-screen mx-auto`}>
         <h1 css={tw`text-blue-300 m-0 py-4`}>Drum Machine</h1>
         <DrumPadGrid>
           <DrumMachine />
         </DrumPadGrid>
       </div>
+    </div>
     );
   }
 }
